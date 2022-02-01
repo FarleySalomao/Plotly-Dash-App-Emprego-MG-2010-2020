@@ -18,11 +18,8 @@ server = app.server
 
 # carregando banco de dados
 df = pd.read_csv('RAISVINCULOSMG20102020nome.csv')
-print(df.head())
-print(df.describe())
 with urlopen('https://raw.githubusercontent.com/tbrugz/geodata-br/master/geojson/geojs-31-mun.json') as response:
     counties = json.load(response)
-
 selections = list()
 
 # ------------------------------------------------------------------------------
@@ -54,7 +51,20 @@ app.layout = html.Div([
             html.Button(id='resetar', n_clicks=0, children="resetar"),
         ], style={'horizontal-align': 'right'}),
 
-        dcc.Graph(id="line-chart")
+        dcc.Graph(id="line-chart"),
+
+        html.Div([
+            dcc.Markdown("© 2022 Farley Salomão F. " +
+                         "[[Github]](https://github.com/FarleySalomao) " +
+                         "[[Linkedin]](https://www.linkedin.com/in/farleysalomao) "
+                         "" +
+                         "[[Email]](mailto:ivanlai.uk.2020@gmail.com)")
+
+        ], style={'textAlign': 'right',
+                  #         'padding': '10px 20px 0px 0px',
+                  'width': '29%'},
+            className="four columns"
+        )
     ], style={'display': 'inline-block', 'width': '49%', 'vertical-align': 'middle'}),
 
 ])
